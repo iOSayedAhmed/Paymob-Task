@@ -1,0 +1,13 @@
+//
+//  Config.xcconfig
+//  Paymob-Task
+//
+//  Created by iOSAYed on 06/07/2024.
+//
+
+// Configuration settings file format documentation can be found at:
+// https://help.apple.com/xcode/#/dev745c5c974
+
+APIKey = "16d22913fca74773a1d5124b89332077"
+accessToken = "eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MDExYzFmM2RhNjAzOTc4NzIzMGQ0NjUxNmIwZjgyYyIsInN1YiI6IjY2MzYwOTc5NDcwZWFkMDEyYTEyMzhiYSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.5lmqV_wXgA5fculNjK4SvSNHNLqgadxK-vckgQt_jaA"
+imageURL = "https://image.tmdb.org/t/p/w500/"
