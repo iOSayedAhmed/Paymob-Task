@@ -31,7 +31,7 @@ final class SplashCoordinator:Coordinator {
   
       
     func startMainTabBarCoordinator(){
-        let mainTabBarCoordinator = MainCoordinator(navigationController: navigationController)
+        let mainTabBarCoordinator = MainTabBarCoordinator(navigationController: navigationController)
         mainTabBarCoordinator.navigationController.navigationBar.isHidden = true
         childCoordinators.append(mainTabBarCoordinator)
         mainTabBarCoordinator.start()
