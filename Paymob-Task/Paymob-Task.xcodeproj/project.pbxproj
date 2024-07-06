@@ -9,14 +9,15 @@
 /* Begin PBXBuildFile section */
 		C828CEB92C39463F001075BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CEB82C39463F001075BB /* AppDelegate.swift */; };
 		C828CEBB2C39463F001075BB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CEBA2C39463F001075BB /* SceneDelegate.swift */; };
-		C828CEBD2C39463F001075BB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CEBC2C39463F001075BB /* ViewController.swift */; };
-		C828CEC02C39463F001075BB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C828CEBE2C39463F001075BB /* Main.storyboard */; };
 		C828CEC32C39463F001075BB /* Paymob_Task.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = C828CEC12C39463F001075BB /* Paymob_Task.xcdatamodeld */; };
 		C828CEC52C394641001075BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C828CEC42C394641001075BB /* Assets.xcassets */; };
 		C828CEC82C394641001075BB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C828CEC62C394641001075BB /* LaunchScreen.storyboard */; };
 		C828CED32C394641001075BB /* Paymob_TaskTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CED22C394641001075BB /* Paymob_TaskTests.swift */; };
 		C828CEDD2C394641001075BB /* Paymob_TaskUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CEDC2C394641001075BB /* Paymob_TaskUITests.swift */; };
 		C828CEDF2C394641001075BB /* Paymob_TaskUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CEDE2C394641001075BB /* Paymob_TaskUITestsLaunchTests.swift */; };
+		C828CEF22C3948D1001075BB /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CEF12C3948D1001075BB /* AppCoordinator.swift */; };
+		C828CEF42C39490D001075BB /* SplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CEF32C39490D001075BB /* SplashCoordinator.swift */; };
+		C828CEF62C394953001075BB /* MainTabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CEF52C394953001075BB /* MainTabBarCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +41,6 @@
 		C828CEB52C39463F001075BB /* Paymob-Task.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Paymob-Task.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C828CEB82C39463F001075BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C828CEBA2C39463F001075BB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		C828CEBC2C39463F001075BB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		C828CEBF2C39463F001075BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C828CEC22C39463F001075BB /* Paymob_Task.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Paymob_Task.xcdatamodel; sourceTree = "<group>"; };
 		C828CEC42C394641001075BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C828CEC72C394641001075BB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -51,6 +50,9 @@
 		C828CED82C394641001075BB /* Paymob-TaskUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Paymob-TaskUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C828CEDC2C394641001075BB /* Paymob_TaskUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paymob_TaskUITests.swift; sourceTree = "<group>"; };
 		C828CEDE2C394641001075BB /* Paymob_TaskUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Paymob_TaskUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		C828CEF12C3948D1001075BB /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		C828CEF32C39490D001075BB /* SplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashCoordinator.swift; sourceTree = "<group>"; };
+		C828CEF52C394953001075BB /* MainTabBarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,13 +103,12 @@
 		C828CEB72C39463F001075BB /* Paymob-Task */ = {
 			isa = PBXGroup;
 			children = (
-				C828CEB82C39463F001075BB /* AppDelegate.swift */,
-				C828CEBA2C39463F001075BB /* SceneDelegate.swift */,
-				C828CEBC2C39463F001075BB /* ViewController.swift */,
-				C828CEBE2C39463F001075BB /* Main.storyboard */,
-				C828CEC42C394641001075BB /* Assets.xcassets */,
-				C828CEC62C394641001075BB /* LaunchScreen.storyboard */,
-				C828CEC92C394641001075BB /* Info.plist */,
+				C828CEEC2C394749001075BB /* App */,
+				C828CEF72C394A76001075BB /* Scence */,
+				C828CEEE2C3948A4001075BB /* Services */,
+				C828CEEF2C3948B3001075BB /* Resources */,
+				C828CEED2C394892001075BB /* Helpers */,
+				C828CEF02C3948C2001075BB /* Coordinators */,
 				C828CEC12C39463F001075BB /* Paymob_Task.xcdatamodeld */,
 			);
 			path = "Paymob-Task";
@@ -128,6 +129,56 @@
 				C828CEDE2C394641001075BB /* Paymob_TaskUITestsLaunchTests.swift */,
 			);
 			path = "Paymob-TaskUITests";
+			sourceTree = "<group>";
+		};
+		C828CEEC2C394749001075BB /* App */ = {
+			isa = PBXGroup;
+			children = (
+				C828CEB82C39463F001075BB /* AppDelegate.swift */,
+				C828CEBA2C39463F001075BB /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C828CEED2C394892001075BB /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C828CEEE2C3948A4001075BB /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		C828CEEF2C3948B3001075BB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C828CEC42C394641001075BB /* Assets.xcassets */,
+				C828CEC62C394641001075BB /* LaunchScreen.storyboard */,
+				C828CEC92C394641001075BB /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		C828CEF02C3948C2001075BB /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				C828CEF12C3948D1001075BB /* AppCoordinator.swift */,
+				C828CEF32C39490D001075BB /* SplashCoordinator.swift */,
+				C828CEF52C394953001075BB /* MainTabBarCoordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		C828CEF72C394A76001075BB /* Scence */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Scence;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -236,7 +287,6 @@
 			files = (
 				C828CEC82C394641001075BB /* LaunchScreen.storyboard in Resources */,
 				C828CEC52C394641001075BB /* Assets.xcassets in Resources */,
-				C828CEC02C39463F001075BB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,10 +311,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C828CEBD2C39463F001075BB /* ViewController.swift in Sources */,
+				C828CEF22C3948D1001075BB /* AppCoordinator.swift in Sources */,
 				C828CEB92C39463F001075BB /* AppDelegate.swift in Sources */,
+				C828CEF42C39490D001075BB /* SplashCoordinator.swift in Sources */,
 				C828CEC32C39463F001075BB /* Paymob_Task.xcdatamodeld in Sources */,
 				C828CEBB2C39463F001075BB /* SceneDelegate.swift in Sources */,
+				C828CEF62C394953001075BB /* MainTabBarCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,14 +353,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		C828CEBE2C39463F001075BB /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				C828CEBF2C39463F001075BB /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		C828CEC62C394641001075BB /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -447,12 +491,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Paymob-Task/Info.plist";
+				INFOPLIST_FILE = "Paymob-Task/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Paymob-Task";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -476,12 +519,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Paymob-Task/Info.plist";
+				INFOPLIST_FILE = "Paymob-Task/Resources/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Paymob-Task";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.entertainment";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
