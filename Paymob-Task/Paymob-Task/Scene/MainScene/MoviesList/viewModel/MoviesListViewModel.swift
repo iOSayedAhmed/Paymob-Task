@@ -24,14 +24,14 @@ class MoviesListViewModel {
     private var page: Int = 1
     
     @discardableResult
-    func loadNowplayingMovies(page: Int = 1) async throws -> NowPlayingResponse {
+    func loadNowplayingMovies(page: Int = 1) async throws -> MoviesListResponse {
         isLoading = true
         defer { isLoading = false }
         
         let fetchedMovies = storageManager.fetchMovies()
         
         if fetchedMovies.isEmpty {
-            let response: NowPlayingResponse = try await manager.request(path: .nowPlaying, parameters: ["page": "\(page)"])
+            let response: MoviesListResponse = try await manager.request(path: .nowPlaying, parameters: ["page": "\(page)"])
             movies.append(contentsOf: response.results)
             storageManager.saveMovies(movies: movies)
             return response
@@ -39,7 +39,7 @@ class MoviesListViewModel {
             movies = fetchedMovies.map {
                 Movie(backdropPath: $0.backgroundImage ?? "", genreIDS: [], overview: $0.overView ?? "", posterPath: $0.image ?? "", releaseDate: $0.releaseDate ?? "", title: $0.title ?? "", voteCount: Int($0.voteCount))
             }
-            return NowPlayingResponse(results: movies)
+            return MoviesListResponse(results: movies)
         }
     }
     
@@ -47,7 +47,7 @@ class MoviesListViewModel {
         Task {
             do {
                 let newPage = self.page + 1
-                let response: NowPlayingResponse = try await manager.request(path: .nowPlaying, parameters: ["page": "\(newPage)"])
+                let response: MoviesListResponse = try await manager.request(path: .nowPlaying, parameters: ["page": "\(newPage)"])
                 movies.append(contentsOf: response.results)
                 storageManager.saveMovies(movies: movies)
                 self.page = newPage
