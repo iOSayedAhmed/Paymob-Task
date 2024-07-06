@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SplashVC" customModule="Paymob_Task" customModuleProvider="target">
+            <connections>
+                <outlet property="logoImageView" destination="zEr-Qv-A7O" id="hmL-IZ-ijf"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paymobLogo" translatesAutoresizingMaskIntoConstraints="NO" id="zEr-Qv-A7O">
+                    <rect key="frame" x="45.333333333333343" y="332.33333333333331" width="302.33333333333326" height="187.33333333333331"/>
+                </imageView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="PrimaryColor100"/>
+            <constraints>
+                <constraint firstItem="zEr-Qv-A7O" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.77" id="QSc-Tb-J5w"/>
+                <constraint firstItem="zEr-Qv-A7O" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.22" id="SK1-hB-NcR"/>
+                <constraint firstItem="zEr-Qv-A7O" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="a2c-xW-yd9"/>
+                <constraint firstItem="zEr-Qv-A7O" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="e9D-Mg-bKp"/>
+            </constraints>
+            <point key="canvasLocation" x="139.69465648854961" y="19.718309859154932"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="paymobLogo" width="225" height="225"/>
+        <namedColor name="PrimaryColor100">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+        </namedColor>
+    </resources>
+</document>
