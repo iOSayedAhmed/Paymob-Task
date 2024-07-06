@@ -21,13 +21,12 @@
 		C828CF002C394CFA001075BB /* SplashVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = C828CEFE2C394CFA001075BB /* SplashVC.xib */; };
 		C828CF092C394D71001075BB /* SplashViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF082C394D71001075BB /* SplashViewModel.swift */; };
 		C828CF0D2C395613001075BB /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C828CF0C2C395613001075BB /* Colors.xcassets */; };
-		C828CF112C3959D4001075BB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF102C3959D4001075BB /* MainTabBarController.swift */; };
-		C828CF1D2C395D5C001075BB /* NowPlayingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF1B2C395D5C001075BB /* NowPlayingViewController.swift */; };
-		C828CF1E2C395D5C001075BB /* NowPlayingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C828CF1C2C395D5C001075BB /* NowPlayingViewController.xib */; };
-		C828CF242C3961BF001075BB /* NowPlayingResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF232C3961BF001075BB /* NowPlayingResponse.swift */; };
+		C828CF1D2C395D5C001075BB /* MoviesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF1B2C395D5C001075BB /* MoviesListViewController.swift */; };
+		C828CF1E2C395D5C001075BB /* MoviesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C828CF1C2C395D5C001075BB /* MoviesListViewController.xib */; };
+		C828CF242C3961BF001075BB /* MoviesListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF232C3961BF001075BB /* MoviesListResponse.swift */; };
 		C828CF272C39626F001075BB /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF262C39626F001075BB /* ImageLoader.swift */; };
-		C828CF292C3962B1001075BB /* NowPlayingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF282C3962B1001075BB /* NowPlayingCoordinator.swift */; };
-		C828CF2B2C39630E001075BB /* NowPlayingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF2A2C39630E001075BB /* NowPlayingViewModel.swift */; };
+		C828CF292C3962B1001075BB /* MoviesListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF282C3962B1001075BB /* MoviesListCoordinator.swift */; };
+		C828CF2B2C39630E001075BB /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF2A2C39630E001075BB /* MoviesListViewModel.swift */; };
 		C828CF2E2C3964AF001075BB /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF2D2C3964AF001075BB /* NetworkService.swift */; };
 		C828CF312C3964D9001075BB /* Configration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF302C3964D9001075BB /* Configration.swift */; };
 		C828CF362C3965A7001075BB /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF352C3965A7001075BB /* NetworkError.swift */; };
@@ -38,7 +37,7 @@
 		C828CF452C3971FA001075BB /* MovieCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C828CF432C3971FA001075BB /* MovieCVCell.xib */; };
 		C828CF482C39725B001075BB /* NSObject+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF472C39725B001075BB /* NSObject+Extension.swift */; };
 		C828CF492C39802C001075BB /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = C828CF342C396558001075BB /* Config.xcconfig */; };
-		C828CF4B2C39880B001075BB /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF4A2C39880B001075BB /* SearchCoordinator.swift */; };
+		C828CF4F2C399446001075BB /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF4E2C399446001075BB /* MainTabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,13 +76,12 @@
 		C828CEFE2C394CFA001075BB /* SplashVC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SplashVC.xib; sourceTree = "<group>"; };
 		C828CF082C394D71001075BB /* SplashViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModel.swift; sourceTree = "<group>"; };
 		C828CF0C2C395613001075BB /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
-		C828CF102C3959D4001075BB /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		C828CF1B2C395D5C001075BB /* NowPlayingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewController.swift; sourceTree = "<group>"; };
-		C828CF1C2C395D5C001075BB /* NowPlayingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NowPlayingViewController.xib; sourceTree = "<group>"; };
-		C828CF232C3961BF001075BB /* NowPlayingResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingResponse.swift; sourceTree = "<group>"; };
+		C828CF1B2C395D5C001075BB /* MoviesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewController.swift; sourceTree = "<group>"; };
+		C828CF1C2C395D5C001075BB /* MoviesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MoviesListViewController.xib; sourceTree = "<group>"; };
+		C828CF232C3961BF001075BB /* MoviesListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListResponse.swift; sourceTree = "<group>"; };
 		C828CF262C39626F001075BB /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
-		C828CF282C3962B1001075BB /* NowPlayingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingCoordinator.swift; sourceTree = "<group>"; };
-		C828CF2A2C39630E001075BB /* NowPlayingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowPlayingViewModel.swift; sourceTree = "<group>"; };
+		C828CF282C3962B1001075BB /* MoviesListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListCoordinator.swift; sourceTree = "<group>"; };
+		C828CF2A2C39630E001075BB /* MoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewModel.swift; sourceTree = "<group>"; };
 		C828CF2D2C3964AF001075BB /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		C828CF302C3964D9001075BB /* Configration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configration.swift; sourceTree = "<group>"; };
 		C828CF342C396558001075BB /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
@@ -94,7 +92,7 @@
 		C828CF422C3971FA001075BB /* MovieCVCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieCVCell.swift; sourceTree = "<group>"; };
 		C828CF432C3971FA001075BB /* MovieCVCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MovieCVCell.xib; sourceTree = "<group>"; };
 		C828CF472C39725B001075BB /* NSObject+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extension.swift"; sourceTree = "<group>"; };
-		C828CF4A2C39880B001075BB /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		C828CF4E2C399446001075BB /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,8 +218,7 @@
 				C828CEF32C39490D001075BB /* SplashCoordinator.swift */,
 				C828CEF12C3948D1001075BB /* AppCoordinator.swift */,
 				C828CEF52C394953001075BB /* MainTabBarCoordinator.swift */,
-				C828CF282C3962B1001075BB /* NowPlayingCoordinator.swift */,
-				C828CF4A2C39880B001075BB /* SearchCoordinator.swift */,
+				C828CF282C3962B1001075BB /* MoviesListCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -280,34 +277,26 @@
 		C828CF0E2C3959A8001075BB /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
-				C828CF0F2C3959CC001075BB /* TabBar */,
-				C828CF122C395A55001075BB /* Now Playing */,
+				C828CF4C2C39941D001075BB /* TabBar */,
+				C828CF122C395A55001075BB /* MoviesList */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
 		};
-		C828CF0F2C3959CC001075BB /* TabBar */ = {
-			isa = PBXGroup;
-			children = (
-				C828CF162C395C59001075BB /* Controller */,
-			);
-			path = TabBar;
-			sourceTree = "<group>";
-		};
-		C828CF122C395A55001075BB /* Now Playing */ = {
+		C828CF122C395A55001075BB /* MoviesList */ = {
 			isa = PBXGroup;
 			children = (
 				C828CF152C395A75001075BB /* Model */,
 				C828CF142C395A73001075BB /* View */,
 				C828CF132C395A70001075BB /* viewModel */,
 			);
-			path = "Now Playing";
+			path = MoviesList;
 			sourceTree = "<group>";
 		};
 		C828CF132C395A70001075BB /* viewModel */ = {
 			isa = PBXGroup;
 			children = (
-				C828CF2A2C39630E001075BB /* NowPlayingViewModel.swift */,
+				C828CF2A2C39630E001075BB /* MoviesListViewModel.swift */,
 			);
 			path = viewModel;
 			sourceTree = "<group>";
@@ -324,24 +313,16 @@
 		C828CF152C395A75001075BB /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C828CF232C3961BF001075BB /* NowPlayingResponse.swift */,
+				C828CF232C3961BF001075BB /* MoviesListResponse.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		C828CF162C395C59001075BB /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				C828CF102C3959D4001075BB /* MainTabBarController.swift */,
-			);
-			path = Controller;
 			sourceTree = "<group>";
 		};
 		C828CF172C395D13001075BB /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				C828CF1B2C395D5C001075BB /* NowPlayingViewController.swift */,
-				C828CF1C2C395D5C001075BB /* NowPlayingViewController.xib */,
+				C828CF1B2C395D5C001075BB /* MoviesListViewController.swift */,
+				C828CF1C2C395D5C001075BB /* MoviesListViewController.xib */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -402,6 +383,22 @@
 				C828CF472C39725B001075BB /* NSObject+Extension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		C828CF4C2C39941D001075BB /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				C828CF4D2C399437001075BB /* Controller */,
+			);
+			path = TabBar;
+			sourceTree = "<group>";
+		};
+		C828CF4D2C399437001075BB /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				C828CF4E2C399446001075BB /* MainTabBarController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -516,7 +513,7 @@
 				C828CF002C394CFA001075BB /* SplashVC.xib in Resources */,
 				C828CF452C3971FA001075BB /* MovieCVCell.xib in Resources */,
 				C828CF0D2C395613001075BB /* Colors.xcassets in Resources */,
-				C828CF1E2C395D5C001075BB /* NowPlayingViewController.xib in Resources */,
+				C828CF1E2C395D5C001075BB /* MoviesListViewController.xib in Resources */,
 				C828CEC82C394641001075BB /* LaunchScreen.storyboard in Resources */,
 				C828CF492C39802C001075BB /* Config.xcconfig in Resources */,
 				C828CEC52C394641001075BB /* Assets.xcassets in Resources */,
@@ -544,25 +541,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C828CF2B2C39630E001075BB /* NowPlayingViewModel.swift in Sources */,
+				C828CF2B2C39630E001075BB /* MoviesListViewModel.swift in Sources */,
 				C828CF392C396639001075BB /* Constants.swift in Sources */,
-				C828CF4B2C39880B001075BB /* SearchCoordinator.swift in Sources */,
 				C828CEF22C3948D1001075BB /* AppCoordinator.swift in Sources */,
 				C828CF482C39725B001075BB /* NSObject+Extension.swift in Sources */,
 				C828CF3E2C397020001075BB /* StorageManager.swift in Sources */,
 				C828CEB92C39463F001075BB /* AppDelegate.swift in Sources */,
-				C828CF242C3961BF001075BB /* NowPlayingResponse.swift in Sources */,
-				C828CF112C3959D4001075BB /* MainTabBarController.swift in Sources */,
+				C828CF242C3961BF001075BB /* MoviesListResponse.swift in Sources */,
 				C828CF412C39707A001075BB /* Paymob_Task.xcdatamodeld in Sources */,
 				C828CEF42C39490D001075BB /* SplashCoordinator.swift in Sources */,
 				C828CEBB2C39463F001075BB /* SceneDelegate.swift in Sources */,
 				C828CF092C394D71001075BB /* SplashViewModel.swift in Sources */,
 				C828CF2E2C3964AF001075BB /* NetworkService.swift in Sources */,
 				C828CF312C3964D9001075BB /* Configration.swift in Sources */,
-				C828CF292C3962B1001075BB /* NowPlayingCoordinator.swift in Sources */,
-				C828CF1D2C395D5C001075BB /* NowPlayingViewController.swift in Sources */,
+				C828CF292C3962B1001075BB /* MoviesListCoordinator.swift in Sources */,
+				C828CF1D2C395D5C001075BB /* MoviesListViewController.swift in Sources */,
 				C828CEF62C394953001075BB /* MainTabBarCoordinator.swift in Sources */,
 				C828CF362C3965A7001075BB /* NetworkError.swift in Sources */,
+				C828CF4F2C399446001075BB /* MainTabBarController.swift in Sources */,
 				C828CF442C3971FA001075BB /* MovieCVCell.swift in Sources */,
 				C828CEFF2C394CFA001075BB /* SplashVC.swift in Sources */,
 				C828CF272C39626F001075BB /* ImageLoader.swift in Sources */,
@@ -747,6 +743,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -775,6 +772,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

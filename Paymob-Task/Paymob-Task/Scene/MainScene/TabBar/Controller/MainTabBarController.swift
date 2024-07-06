@@ -5,6 +5,7 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
+import Foundation
 import UIKit
 
 class MainTabBarController: UITabBarController {
@@ -36,7 +37,7 @@ class MainTabBarController: UITabBarController {
         if #available(iOS 15.0, *) {
             let appearance = UITabBarAppearance()
             appearance.configureWithOpaqueBackground()
-            appearance.backgroundColor = .label
+            appearance.backgroundColor = UIColor.tabBarBackground
             
             tabBar.standardAppearance = appearance
             tabBar.scrollEdgeAppearance = tabBar.standardAppearance
@@ -86,6 +87,4 @@ class MainTabBarController: UITabBarController {
         propertyAnimator.startAnimation()
     }
 }
-
-
 

@@ -20,7 +20,19 @@ final class MainTabBarCoordinator: Coordinator {
     func start() {
         
         let tabBarController = MainTabBarController()
-      
+        
+        let nowPlayingCoordinator = MoviesListCoordinator(navigationController: UINavigationController())
+       
+        nowPlayingCoordinator.start()
+
+        let nowPlayingNavigationController = nowPlayingCoordinator.navigationController
+        
+        nowPlayingNavigationController.title = "Now Playing"
+        nowPlayingNavigationController.tabBarItem.selectedImage = UIImage(systemName: "newspaper.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+        nowPlayingNavigationController.tabBarItem.image = UIImage(systemName: "newspaper.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+
+        tabBarController.viewControllers = [nowPlayingNavigationController]
+        navigationController.setViewControllers([tabBarController], animated: false)
     }
     
     
