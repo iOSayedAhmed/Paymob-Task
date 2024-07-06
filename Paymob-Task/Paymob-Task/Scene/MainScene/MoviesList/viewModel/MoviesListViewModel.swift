@@ -5,18 +5,17 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class MoviesListViewModel {
     public var manager = NetworkService()
     private let storageManager = StorageManager.shared
     
-    weak var coordinator:MoviesListCoordinator?
-        init(coordinator: MoviesListCoordinator? = nil) {
-            self.coordinator = coordinator
-            print("Shown")
-        }
+    var coordinator: MoviesListCoordinator
+    init(coordinator: MoviesListCoordinator) {
+        self.coordinator = coordinator
+    }
     
     @Published var isLoading = true
     @Published var movies: [Movie] = []
@@ -61,5 +60,10 @@ class MoviesListViewModel {
         guard !movies.isEmpty else { return nil }
         
         return movies[index]
+    }
+    
+    func goToMovieDetails(movie:Movie){
+        print(movie.title)
+        coordinator.goToMovieDetails(movie: movie)
     }
 }
