@@ -67,7 +67,7 @@ class SplashVC: UIViewController {
             }
         viewModel.animationCompleted
                    .sink { [weak self] isCompleted in
-                       guard let self = self else { return }
+                       guard let _ = self else { return }
                        if isCompleted {
                            viewModel.goToMainTabBar()
                        } else {

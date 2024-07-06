@@ -33,7 +33,6 @@ class MoviesListViewController: UIViewController {
         fetchNowPlayingMovies()
         configureDataSource()
         setupViewBinding()
-        print(viewModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
