@@ -21,17 +21,18 @@ final class MainTabBarCoordinator: Coordinator {
         
         let tabBarController = MainTabBarController()
         
-        let nowPlayingCoordinator = MoviesListCoordinator(navigationController: UINavigationController())
-       
-        nowPlayingCoordinator.start()
-
-        let nowPlayingNavigationController = nowPlayingCoordinator.navigationController
         
-        nowPlayingNavigationController.title = "Now Playing"
-        nowPlayingNavigationController.tabBarItem.selectedImage = UIImage(systemName: "newspaper.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
-        nowPlayingNavigationController.tabBarItem.image = UIImage(systemName: "newspaper.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        let moviesListCoordinator = MoviesListCoordinator(navigationController: UINavigationController())
+       
+        moviesListCoordinator.start()
 
-        tabBarController.viewControllers = [nowPlayingNavigationController]
+        let moviesListNavigationController = moviesListCoordinator.navigationController
+        
+        moviesListNavigationController.title = "Now Playing"
+        moviesListNavigationController.tabBarItem.selectedImage = UIImage(systemName: "newspaper.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+        moviesListNavigationController.tabBarItem.image = UIImage(systemName: "newspaper.fill")?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        childCoordinators.append(moviesListCoordinator)
+        tabBarController.viewControllers = [moviesListNavigationController]
         navigationController.setViewControllers([tabBarController], animated: false)
     }
     

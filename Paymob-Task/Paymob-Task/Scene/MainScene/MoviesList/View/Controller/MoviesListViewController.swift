@@ -120,10 +120,8 @@ class MoviesListViewController: UIViewController {
 extension MoviesListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        if let movie = viewModel?.selectedMovie(at: indexPath.row) {
-//            let vm = MovieDetailsViewModel(movie: movie)
-//            let vc = MovieDetailsViewController(viewModel: vm)
-//            show(vc, sender: nil)
+        if let viewModel = viewModel , let  movie = viewModel.selectedMovie(at: indexPath.row) {
+            viewModel.coordinator.goToMovieDetails(movie: movie)
         }
     }
     
