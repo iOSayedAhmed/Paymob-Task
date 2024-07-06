@@ -10,7 +10,7 @@ import Foundation
 
 class MoviesListViewModel {
     public var manager = NetworkService()
-    private let storageManager = StorageManager.shared
+     let storageManager = StorageManager.shared
     
     var coordinator: MoviesListCoordinator
     init(coordinator: MoviesListCoordinator) {
@@ -23,38 +23,49 @@ class MoviesListViewModel {
     private var page: Int = 1
     
     @discardableResult
-    func loadNowplayingMovies(page: Int = 1) async throws -> MoviesListResponse {
-        isLoading = true
-        defer { isLoading = false }
-        
-        let fetchedMovies = storageManager.fetchMovies()
-        
-        if fetchedMovies.isEmpty {
+        func loadNowplayingMovies(page: Int = 1) async throws -> MoviesListResponse {
+            isLoading = true
+            defer { isLoading = false }
+
             let response: MoviesListResponse = try await manager.request(path: .nowPlaying, parameters: ["page": "\(page)"])
-            movies.append(contentsOf: response.results)
-            storageManager.saveMovies(movies: movies)
-            return response
-        } else {
-            movies = fetchedMovies.map {
-                Movie(backdropPath: $0.backgroundImage ?? "", genreIDS: [], overview: $0.overView ?? "", posterPath: $0.image ?? "", releaseDate: $0.releaseDate ?? "", title: $0.title ?? "", voteCount: Int($0.voteCount))
+            let fetchedFavorites = storageManager.fetchFavorites()
+
+            let favoriteMovieIDs = Set(fetchedFavorites.compactMap { Int($0.id) })
+
+            movies = response.results.map { movie in
+                let updatedMovie = movie
+                if favoriteMovieIDs.contains(movie.id ?? 0) {
+                    updatedMovie.isFavorite = true
+                }
+                return updatedMovie
             }
-            return MoviesListResponse(results: movies)
+            return response
         }
-    }
     
     func loadMoreMovies() {
-        Task {
-            do {
-                let newPage = self.page + 1
-                let response: MoviesListResponse = try await manager.request(path: .nowPlaying, parameters: ["page": "\(newPage)"])
-                movies.append(contentsOf: response.results)
-                storageManager.saveMovies(movies: movies)
-                self.page = newPage
-            } catch {
-                self.page = -1
-            }
-        }
-    }
+           Task {
+               do {
+                   let newPage = self.page + 1
+                   let response: MoviesListResponse = try await manager.request(path: .nowPlaying, parameters: ["page": "\(newPage)"])
+                   let fetchedFavorites = storageManager.fetchFavorites()
+                   
+                   let favoriteMovieIDs = Set(fetchedFavorites.compactMap { Int($0.id) })
+                   
+                   let newMovies = response.results.map { movie in
+                       var updatedMovie = movie
+                       if favoriteMovieIDs.contains(movie.id ?? 0) {
+                           updatedMovie.isFavorite = true
+                       }
+                       return updatedMovie
+                   }
+
+                   movies.append(contentsOf: newMovies)
+                   self.page = newPage
+               } catch {
+                   self.page = -1
+               }
+           }
+       }
     
     func selectedMovie(at index: Int) -> Movie? {
         guard !movies.isEmpty else { return nil }
@@ -62,8 +73,22 @@ class MoviesListViewModel {
         return movies[index]
     }
     
+    func toggleFavorite(movie: Movie) {
+        let updatedMovie = movie
+            updatedMovie.isFavorite.toggle()
+
+            if updatedMovie.isFavorite {
+                storageManager.saveFavorite(movie: updatedMovie)
+            } else {
+                storageManager.deleteFavorite(movie: updatedMovie)
+            }
+
+            if let index = movies.firstIndex(where: { $0.id == movie.id }) {
+                movies[index] = updatedMovie
+            }
+        }
+    
     func goToMovieDetails(movie:Movie){
-        print(movie.title)
         coordinator.goToMovieDetails(movie: movie)
     }
 }

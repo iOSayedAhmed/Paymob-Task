@@ -53,7 +53,8 @@ class Movie: Codable, Hashable, Equatable {
     var video: Bool?
     var voteAverage: Double?
     var voteCount: Int
-
+    var isFavorite: Bool = false
+    
       enum CodingKeys: String, CodingKey {
           case adult
           case backdropPath = "backdrop_path"
@@ -69,7 +70,7 @@ class Movie: Codable, Hashable, Equatable {
           case voteCount = "vote_count"
       }
     
-    init(adult: Bool? = nil, backdropPath: String, genreIDS: [Int], id: Int? = nil, originalLanguage: String? = nil, originalTitle: String? = nil, overview: String, popularity: Double? = nil, posterPath: String, releaseDate: String, title: String, video: Bool? = nil, voteAverage: Double? = nil, voteCount: Int) {
+    init(adult: Bool? = nil, backdropPath: String, genreIDS: [Int], id: Int? = nil, originalLanguage: String? = nil, originalTitle: String? = nil, overview: String, popularity: Double? = nil, posterPath: String, releaseDate: String, title: String, video: Bool? = nil, voteAverage: Double? = nil, voteCount: Int,isFavorite:Bool = false ) {
         self.adult = adult
         self.backdropPath = backdropPath
         self.genreIDS = genreIDS
@@ -84,6 +85,7 @@ class Movie: Codable, Hashable, Equatable {
         self.video = video
         self.voteAverage = voteAverage
         self.voteCount = voteCount
+        self.isFavorite = isFavorite
     }
     
     static func == (lhs: Movie, rhs: Movie) -> Bool {

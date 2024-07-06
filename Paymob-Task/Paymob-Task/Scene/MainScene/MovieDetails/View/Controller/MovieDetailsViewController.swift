@@ -6,17 +6,20 @@
 //
 
 import UIKit
+import Combine
 
 class MovieDetailsViewController: UIViewController {
-    @IBOutlet var movieImageView: UIImageView!
-    @IBOutlet var titleLabel: UILabel!
-    @IBOutlet var genreIdsLabel: UILabel!
-    @IBOutlet var releaseNoteLabel: UILabel!
-    @IBOutlet var overviewTextView: UITextView!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    
+    @IBOutlet weak var movieImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var genreIdsLabel: UILabel!
+    @IBOutlet weak var releaseNoteLabel: UILabel!
+    @IBOutlet weak var ratingLabel: UILabel!
+    @IBOutlet weak var overviewTextView: UITextView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var favoriteButton: UIButton!
     var viewModel: MovieDetailsViewModel?
-    
+    private var cancellables: Set<AnyCancellable> = []
+
     init(viewModel: MovieDetailsViewModel, nibName: String) {
         self.viewModel = viewModel
         super.init(nibName: nibName, bundle: nil)
@@ -30,6 +33,7 @@ class MovieDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
+        bindViewModel()
     }
 
     private func setupViews() {
@@ -39,6 +43,7 @@ class MovieDetailsViewController: UIViewController {
         overviewTextView.text = viewModel.overview
         genreIdsLabel.text = viewModel.genreIds
         releaseNoteLabel.text = viewModel.releaseDate
+        ratingLabel.text = viewModel.rating
         genreIdsLabel.isHidden = viewModel.genreIds.isEmpty
         
         activityIndicator.startAnimating()
@@ -54,5 +59,23 @@ class MovieDetailsViewController: UIViewController {
                 self.movieImageView.image = UIImage(named: "image_placeholder")
             }
         }
+        
     }
+    
+    @IBAction func didTapFavoriteButton(_ sender: UIButton) {
+        viewModel?.toggleFavorite()
+    }
+
+    private func updateFavoriteButtonAppearance(isFavorite: Bool) {
+        favoriteButton.setImage(UIImage(systemName: isFavorite ? "heart.fill" : "heart"), for: .normal)
+    }
+    
+    private func bindViewModel() {
+         viewModel?.$isFavorite
+             .receive(on: DispatchQueue.main)
+             .sink { [weak self] isFavorite in
+                 self?.updateFavoriteButtonAppearance(isFavorite: isFavorite)
+             }
+             .store(in: &cancellables)
+     }
 }

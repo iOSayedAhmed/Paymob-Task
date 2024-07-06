@@ -33,6 +33,7 @@ class MoviesListViewController: UIViewController {
         fetchNowPlayingMovies()
         configureDataSource()
         setupViewBinding()
+        observeFavoriteStatusChanges()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -100,9 +101,9 @@ class MoviesListViewController: UIViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCVCell.className, for: indexPath) as! MovieCVCell
        
         let cellViewModel = MovieCVCellViewModel(movie: movie)
-        cell.configure(viewModel: cellViewModel)
-        
-        return cell
+           cell.configure(viewModel: cellViewModel)   
+           cell.delegate = self
+           return cell
     }
     
     private func generateCollectionLayout() -> UICollectionViewCompositionalLayout {
@@ -115,12 +116,26 @@ class MoviesListViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         return UICollectionViewCompositionalLayout(section: section)
     }
+    
+    private func observeFavoriteStatusChanges() {
+          NotificationCenter.default.publisher(for: .favoriteStatusChanged)
+              .sink { [weak self] notification in
+                  guard let self = self,
+                        let updatedMovie = notification.object as? Movie else { return }
+                  if let index = self.viewModel?.movies.firstIndex(where: { $0.id == updatedMovie.id }) {
+                      self.viewModel?.movies[index].isFavorite = updatedMovie.isFavorite
+                      collectionView.reloadData()
+                  }
+              }
+              .store(in: &cancellables)
+      }
 }
 
 extension MoviesListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         if let viewModel = viewModel , let  movie = viewModel.selectedMovie(at: indexPath.row) {
+            print(movie.isFavorite)
             viewModel.coordinator.goToMovieDetails(movie: movie)
         }
     }
@@ -134,3 +149,16 @@ extension MoviesListViewController: UICollectionViewDelegate {
         
     }
 }
+
+
+extension MoviesListViewController: MovieCVCellDelegate {
+    func didTapFavoriteButton(in cell: MovieCVCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+        if let movie = viewModel?.movies[indexPath.row] {
+            viewModel?.toggleFavorite(movie: movie)
+            cell.updateFavoriteButtonAppearance(isFavorite: movie.isFavorite)
+        }
+    }
+  }
+
+
