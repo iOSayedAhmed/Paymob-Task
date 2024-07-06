@@ -235,7 +235,6 @@
 		C828CEF82C394C37001075BB /* WelcomeScene */ = {
 			isa = PBXGroup;
 			children = (
-				C828CEFB2C394C96001075BB /* Model */,
 				C828CEFA2C394C94001075BB /* View */,
 				C828CEF92C394C90001075BB /* ViewModel */,
 			);
@@ -256,13 +255,6 @@
 				C828CEFC2C394CDF001075BB /* ViewController */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		C828CEFB2C394C96001075BB /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		C828CEFC2C394CDF001075BB /* ViewController */ = {
