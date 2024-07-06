@@ -6,16 +6,21 @@
 //
 
 import Foundation
+import Combine
 
 class MovieDetailsViewModel {
     private let config = ConfigurationManager.shared
-    
+    private let storageManager = StorageManager.shared
+
     weak var coordinator: MovieDetailsCoordinator?
-    private let movie: Movie
+    private var movie: Movie
+    @Published var isFavorite: Bool
+    private var cancellables: Set<AnyCancellable> = []
     
     init(coordinator: MovieDetailsCoordinator? = nil, movie: Movie) {
         self.coordinator = coordinator
         self.movie = movie
+        self.isFavorite = movie.isFavorite
     }
     
     var title: String {
@@ -40,4 +45,21 @@ class MovieDetailsViewModel {
         }
         return ""
     }
+    
+    var rating: String {
+        let formattedVoteAverage = String(format: "%.2f", movie.voteAverage ?? 0.0)
+        return "Rating \(formattedVoteAverage) ⭐️"
+    }
+    
+    func toggleFavorite() {
+        isFavorite.toggle()
+        movie.isFavorite = isFavorite
+        if isFavorite {
+            storageManager.saveFavorite(movie: movie)
+        } else {
+            storageManager.deleteFavorite(movie: movie)
+        }
+        NotificationCenter.default.post(name: .favoriteStatusChanged, object: movie)
+    }
 }
+

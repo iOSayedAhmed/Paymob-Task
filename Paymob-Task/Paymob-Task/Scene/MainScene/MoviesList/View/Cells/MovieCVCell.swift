@@ -6,6 +6,11 @@
 //
 
 import UIKit
+import Combine
+protocol MovieCVCellDelegate: AnyObject {
+    func didTapFavoriteButton(in cell: MovieCVCell)
+}
+
 
 struct MovieCVCellViewModel {
     private let config = ConfigurationManager.shared
@@ -33,6 +38,11 @@ struct MovieCVCellViewModel {
         }
         return ""
     }
+    
+    var rating: String {
+        let formattedVoteAverage = String(format: "%.2f", movie.voteAverage ?? 0.0)
+        return "Rating \(formattedVoteAverage) ⭐️"
+    }
 }
 
 class MovieCVCell: UICollectionViewCell {
@@ -40,12 +50,18 @@ class MovieCVCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var voteCountLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var ratingLabel: UILabel!
     
-    var viewModel: MovieCVCellViewModel! {
+    weak var delegate: MovieCVCellDelegate?
+    
+    var viewModel: MovieCVCellViewModel? {
         didSet {
+            guard let viewModel = viewModel else { return }
             configure(viewModel: viewModel)
         }
     }
+    var favoriteButtonTapped = PassthroughSubject<Movie, Never>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -56,6 +72,14 @@ class MovieCVCell: UICollectionViewCell {
         titleLabel.text = viewModel.title
         dateLabel.text = viewModel.date
         voteCountLabel.text = viewModel.voteCount
+        ratingLabel.text = viewModel.rating
+        favoriteButton.isSelected = viewModel.movie.isFavorite
+        updateFavoriteButtonAppearance(isFavorite: viewModel.movie.isFavorite)
+    }
+    
+    @IBAction func didTapFavoriteButton(_ sender: UIButton) {
+        favoriteButton.isSelected.toggle()
+        delegate?.didTapFavoriteButton(in: self)
     }
     
     @MainActor func loadImage(imageURL: String) {
@@ -69,4 +93,13 @@ class MovieCVCell: UICollectionViewCell {
             }
         }
     }
+    
+    func updateFavoriteButtonAppearance(isFavorite:Bool) {
+        if isFavorite {
+            favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
+        } else {
+            favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
+    }
 }
+
