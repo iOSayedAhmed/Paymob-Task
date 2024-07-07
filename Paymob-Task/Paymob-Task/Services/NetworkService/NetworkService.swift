@@ -8,12 +8,9 @@
 import Foundation
 import Network
 
-
 class NetworkService {
     enum Endpoint: String {
         case nowPlaying = "now_playing"
-        case popular = "popular"
-        case upcomming = "upcoming"
     }
 
     private let session: URLSession
@@ -38,7 +35,7 @@ class NetworkService {
 
         _ = semaphore.wait(timeout: .now() + 5)
 
-            return isConnected
+        return isConnected
     }
 
     public func request<T: Codable>(path: Endpoint, parameters: [String: String]) async throws -> T {
@@ -53,9 +50,9 @@ class NetworkService {
             if let accessToken = try? config.xconfigValue(key: .accessToken) {
                 request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
             }
-            
+
             print("GET", request.url?.absoluteString ?? "")
-            
+
             let (data, response) = try await session.data(for: request)
             guard let httpResponse = response as? HTTPURLResponse else {
                 throw NetworkError.invalidResponse
@@ -65,7 +62,7 @@ class NetworkService {
             let decoder = JSONDecoder()
             let decodedData = try decoder.decode(T.self, from: _data)
 
-            //encode data to display it as pretty json
+            // encode data to display it as pretty json
             let prettyPrintedData = try JSONEncoder().encode(decodedData)
             if let prettyPrintedString = String(data: prettyPrintedData, encoding: .utf8) {
                 print(prettyPrintedString)
@@ -84,16 +81,16 @@ class NetworkService {
         }
 
         var queryItems: [URLQueryItem] = parameters.map { key, value in
-            return URLQueryItem(name: key, value: value)
+            URLQueryItem(name: key, value: value)
         }
-        
+
         queryItems.append(URLQueryItem(name: "language", value: "en-US"))
         queryItems.append(URLQueryItem(name: "limit", value: "10"))
-        
+
         if let apiKey = try? config.xconfigValue(key: .apiKey) {
             queryItems.append(URLQueryItem(name: "api_key", value: apiKey))
         }
-        
+
         urlComponents?.queryItems = queryItems
 
         guard let url = urlComponents?.url else { return nil }

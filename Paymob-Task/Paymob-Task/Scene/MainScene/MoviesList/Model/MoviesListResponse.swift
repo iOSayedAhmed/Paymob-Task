@@ -38,7 +38,7 @@ class Dates: Codable {
     }
 }
 
-// MARK: - Result
+// MARK: - Movie
 class Movie: Codable, Hashable, Equatable {
     let uuid = UUID().uuidString
     var adult: Bool?

@@ -7,6 +7,7 @@
 
 import CoreData
 import UIKit
+import Combine
 
 class StorageManager {
     static let shared = StorageManager()
@@ -15,7 +16,8 @@ class StorageManager {
 
     private let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     private let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
-
+    let favoritesDidChange = PassthroughSubject<Void, Never>()
+    
     public func saveFavorite(movie: Movie) {
         container.performBackgroundTask { context in
             let entity = Item(context: context)
@@ -28,9 +30,11 @@ class StorageManager {
             entity.backgroundImage = movie.backdropPath
             entity.genreIds = movie.genreIDS.map { String($0) }.joined(separator: ",")
             entity.isFavorite = movie.isFavorite
+            entity.voteAverage = movie.voteAverage ?? 0.0
 
             do {
                 try context.save()
+                self.favoritesDidChange.send(())
             } catch {
                 print(error)
             }
@@ -48,6 +52,7 @@ class StorageManager {
                     context.delete(item)
                 }
                 try context.save()
+                self.favoritesDidChange.send(())
             } catch {
                 print(error)
             }

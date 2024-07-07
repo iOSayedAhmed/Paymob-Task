@@ -16,7 +16,7 @@ enum NetworkError: Error {
     case serverError
     case notFound
     case unknownError(statusCode: Int?)
-    
+
     var message: String {
         switch self {
         case .notConnected:
