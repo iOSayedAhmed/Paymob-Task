@@ -13,10 +13,12 @@ This repository contains the source code for a Movie Listing App developed using
 - **Core Data**: Stores favorite movies locally.
 - **Unit Testing**: Ensures code reliability and functionality.
 
+
 ## ScreenShots
-![movies list](https://github.com/iOSayedAhmed/Paymob-Task/assets/60572628/794e2ef7-6b97-43b8-ac26-0f5b45bbfae8)
-![movie Details](https://github.com/iOSayedAhmed/Paymob-Task/assets/60572628/a354dc54-7d94-42ce-b7fc-21f6f9fe2348)
-![Favorites Movies](https://github.com/iOSayedAhmed/Paymob-Task/assets/60572628/107b386c-f417-4772-8d05-dc3330347a8a)
+<img src="https://github.com/iOSayedAhmed/Paymob-Task/assets/60572628/794e2ef7-6b97-43b8-ac26-0f5b45bbfae8" alt="movies list" width="300"/>
+<img src="https://github.com/iOSayedAhmed/Paymob-Task/assets/60572628/a354dc54-7d94-42ce-b7fc-21f6f9fe2348" alt="movie details" width="300"/>
+<img src="https://github.com/iOSayedAhmed/Paymob-Task/assets/60572628/107b386c-f417-4772-8d05-dc3330347a8a" alt="favorites movies" width="300"/>
+
 
 
 
