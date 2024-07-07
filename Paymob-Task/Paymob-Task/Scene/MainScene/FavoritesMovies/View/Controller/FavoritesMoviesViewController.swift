@@ -5,15 +5,16 @@
 //  Created by iOSAYed on 07/07/2024.
 //
 
-import Combine
 import UIKit
+import RxSwift
+import RxCocoa
 
 class FavoritesMoviesViewController: UIViewController {
     @IBOutlet private var containerStackView: UIStackView!
     @IBOutlet private var collectionView: UICollectionView!
     
     private var emptyView: UILabel!
-    private var cancellables: Set<AnyCancellable> = []
+    private let disposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Int, Movie>?
     var viewModel: FavoritesMoviesViewModel?
     
@@ -61,13 +62,16 @@ class FavoritesMoviesViewController: UIViewController {
     
     private func setupViewBinding() {
         guard let viewModel = viewModel else { return }
-        viewModel.$favoriteMovies
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] movies in
-                guard let self else { return }
+        
+        viewModel.favoriteMovies
+            .asObservable()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] movies in
+                guard let self = self else { return }
                 self.emptyView.isHidden = !movies.isEmpty
-                snapshot(movies: movies)
-            }.store(in: &cancellables)
+                self.snapshot(movies: movies)
+            })
+            .disposed(by: disposeBag)
     }
     
     private func registerCell() {

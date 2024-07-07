@@ -7,7 +7,8 @@
 
 import CoreData
 import UIKit
-import Combine
+import RxSwift
+
 
 class StorageManager {
     static let shared = StorageManager()
@@ -16,7 +17,7 @@ class StorageManager {
 
     private let container = (UIApplication.shared.delegate as! AppDelegate).persistentContainer
     private let fetchRequest = NSFetchRequest<Item>(entityName: "Item")
-    let favoritesDidChange = PassthroughSubject<Void, Never>()
+    let favoritesDidChange = PublishSubject<Void>()
     
     public func saveFavorite(movie: Movie) {
         container.performBackgroundTask { context in
@@ -34,7 +35,7 @@ class StorageManager {
 
             do {
                 try context.save()
-                self.favoritesDidChange.send(())
+                self.favoritesDidChange.onNext(())
             } catch {
                 print(error)
             }
@@ -52,7 +53,7 @@ class StorageManager {
                     context.delete(item)
                 }
                 try context.save()
-                self.favoritesDidChange.send(())
+                self.favoritesDidChange.onNext(())
             } catch {
                 print(error)
             }
@@ -69,3 +70,4 @@ class StorageManager {
         }
     }
 }
+

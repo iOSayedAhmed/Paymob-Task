@@ -4,7 +4,8 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import Combine
+
+import RxSwift
 import UIKit
 
 class SplashVC: UIViewController {
@@ -15,7 +16,7 @@ class SplashVC: UIViewController {
     // MARK: - Propreties
 
     var viewModel: SplachViewModelType!
-    private var cancellables = Set<AnyCancellable>()
+    private let disposeBag = DisposeBag()
     
     init(viewModel: SplachViewModelType, nibName: String) {
         self.viewModel = viewModel
@@ -40,7 +41,6 @@ class SplashVC: UIViewController {
         viewModel?.didDisAppear()
     }
     
-    // MARK: - methods
     
     func animateImageView() {
         guard logoImageView != nil else {
@@ -63,15 +63,16 @@ class SplashVC: UIViewController {
             print("Error: viewModel is nil")
             return
         }
+        
         viewModel.animationCompleted
-            .sink { [weak self] isCompleted in
-                guard let _ = self else { return }
+            .subscribe(onNext: { [weak self] isCompleted in
+                guard let self = self else { return }
                 if isCompleted {
                     viewModel.goToMainTabBar()
                 } else {
                     print("The animation is not complete yet!")
                 }
-            }
-            .store(in: &cancellables)
+            })
+            .disposed(by: disposeBag)
     }
 }

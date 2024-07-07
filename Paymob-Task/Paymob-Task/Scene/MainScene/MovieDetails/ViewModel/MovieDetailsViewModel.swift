@@ -5,8 +5,9 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import Combine
 import Foundation
+import RxSwift
+import RxCocoa
 
 class MovieDetailsViewModel {
     private let config = ConfigurationManager.shared
@@ -14,13 +15,13 @@ class MovieDetailsViewModel {
 
     weak var coordinator: MovieDetailsCoordinator?
     private var movie: Movie
-    @Published var isFavorite: Bool
-    private var cancellables: Set<AnyCancellable> = []
+    let isFavorite: BehaviorRelay<Bool>
+    private let disposeBag = DisposeBag()
     
     init(coordinator: MovieDetailsCoordinator? = nil, movie: Movie) {
         self.coordinator = coordinator
         self.movie = movie
-        self.isFavorite = movie.isFavorite
+        self.isFavorite = BehaviorRelay(value: movie.isFavorite)
     }
     
     var title: String {
@@ -52,9 +53,10 @@ class MovieDetailsViewModel {
     }
     
     func toggleFavorite() {
-        isFavorite.toggle()
-        movie.isFavorite = isFavorite
-        if isFavorite {
+        let newFavoriteStatus = !isFavorite.value
+        isFavorite.accept(newFavoriteStatus)
+        movie.isFavorite = newFavoriteStatus
+        if newFavoriteStatus {
             storageManager.saveFavorite(movie: movie)
         } else {
             storageManager.deleteFavorite(movie: movie)

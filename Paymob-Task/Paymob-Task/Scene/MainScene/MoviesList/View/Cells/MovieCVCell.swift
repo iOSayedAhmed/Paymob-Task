@@ -5,9 +5,8 @@
 //  Created by iOSAYed on 07/07/2024.
 //
 
-import UIKit
 
-import Combine
+import RxSwift
 import UIKit
 
 protocol MovieCVCellDelegate: AnyObject {
@@ -64,10 +63,12 @@ class MovieCVCell: UICollectionViewCell {
         }
     }
 
-    var favoriteButtonTapped = PassthroughSubject<Movie, Never>()
+    var favoriteButtonTapped = PublishSubject<Movie>()
+    private let disposeBag = DisposeBag()
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupBindings()
     }
 
     public func configure(viewModel: MovieCVCellViewModel) {
@@ -103,5 +104,14 @@ class MovieCVCell: UICollectionViewCell {
         } else {
             favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
+    }
+
+    private func setupBindings() {
+        favoriteButton.rx.tap
+            .subscribe(onNext: { [weak self] in
+                guard let self = self, let movie = self.viewModel?.movie else { return }
+                self.favoriteButtonTapped.onNext(movie)
+            })
+            .disposed(by: disposeBag)
     }
 }

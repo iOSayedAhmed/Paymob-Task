@@ -52,6 +52,9 @@
 		C828CF8A2C3A75C2001075BB /* MovieCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C828CF882C3A75C2001075BB /* MovieCVCell.xib */; };
 		C828CF932C3A7F85001075BB /* SplashViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF922C3A7F85001075BB /* SplashViewModelTests.swift */; };
 		C828CF952C3A7FAC001075BB /* MockSplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF942C3A7FAC001075BB /* MockSplashCoordinator.swift */; };
+		C828CF972C3A8553001075BB /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = C828CF962C3A8553001075BB /* RxCocoa */; };
+		C828CF992C3A8553001075BB /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = C828CF982C3A8553001075BB /* RxRelay */; };
+		C828CF9B2C3A8553001075BB /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C828CF9A2C3A8553001075BB /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -128,6 +131,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C828CF9B2C3A8553001075BB /* RxSwift in Frameworks */,
+				C828CF992C3A8553001075BB /* RxRelay in Frameworks */,
+				C828CF972C3A8553001075BB /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,10 +307,10 @@
 		C828CF0E2C3959A8001075BB /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
-				C828CF652C39EE28001075BB /* FavoritesMovies */,
 				C828CF4C2C39941D001075BB /* TabBar */,
 				C828CF122C395A55001075BB /* MoviesList */,
 				C828CF522C3997A0001075BB /* MovieDetails */,
+				C828CF652C39EE28001075BB /* FavoritesMovies */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
@@ -540,6 +546,9 @@
 			);
 			name = "Paymob-Task";
 			packageProductDependencies = (
+				C828CF962C3A8553001075BB /* RxCocoa */,
+				C828CF982C3A8553001075BB /* RxRelay */,
+				C828CF9A2C3A8553001075BB /* RxSwift */,
 			);
 			productName = "Paymob-Task";
 			productReference = C828CEB52C39463F001075BB /* Paymob-Task.app */;
@@ -1045,6 +1054,24 @@
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C828CF962C3A8553001075BB /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C828CF012C394D57001075BB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		C828CF982C3A8553001075BB /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C828CF012C394D57001075BB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		C828CF9A2C3A8553001075BB /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C828CF012C394D57001075BB /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		C828CF3F2C39707A001075BB /* Paymob_Task.xcdatamodeld */ = {

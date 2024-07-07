@@ -5,7 +5,8 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import Combine
+import RxSwift
+import RxCocoa
 import UIKit
 
 class MoviesListViewController: UIViewController {
@@ -13,7 +14,7 @@ class MoviesListViewController: UIViewController {
     @IBOutlet private var collectionView: UICollectionView!
     
     var viewModel: MoviesListViewModel?
-    private var cancellables: Set<AnyCancellable> = []
+    private let disposeBag = DisposeBag()
     private var dataSource: UICollectionViewDiffableDataSource<Int, Movie>?
     
     init(viewModel: MoviesListViewModel, nibName: String) {
@@ -57,20 +58,21 @@ class MoviesListViewController: UIViewController {
     
     private func setupViewBinding() {
         guard let viewModel = viewModel else { return }
-        viewModel.$movies
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] movies in
-                guard let self else { return }
-                snapshot(movies: movies)
-            }.store(in: &cancellables)
+        
+        viewModel.movies
+            .asObservable()
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] movies in
+                guard let self = self else { return }
+                self.snapshot(movies: movies)
+            }).disposed(by: disposeBag)
             
-        viewModel.$movies
-            .combineLatest(viewModel.$isLoading)
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] _, isLoading in
-                guard let self else { return }
-                collectionView.isHidden = isLoading
-            }.store(in: &cancellables)
+        Observable.combineLatest(viewModel.movies.asObservable(), viewModel.isLoading)
+            .observe(on: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] _, isLoading in
+                guard let self = self else { return }
+                self.collectionView.isHidden = isLoading
+            }).disposed(by: disposeBag)
     }
     
     private func registerCell() {
@@ -107,16 +109,15 @@ class MoviesListViewController: UIViewController {
     }
     
     private func observeFavoriteStatusChanges() {
-        NotificationCenter.default.publisher(for: .favoriteStatusChanged)
-            .sink { [weak self] notification in
+        NotificationCenter.default.rx.notification(.favoriteStatusChanged)
+            .subscribe(onNext: { [weak self] notification in
                 guard let self = self,
                       let updatedMovie = notification.object as? Movie else { return }
-                if let index = self.viewModel?.movies.firstIndex(where: { $0.id == updatedMovie.id }) {
-                    self.viewModel?.movies[index].isFavorite = updatedMovie.isFavorite
-                    collectionView.reloadData()
+                if let index = self.viewModel?.movies.value.firstIndex(where: { $0.id == updatedMovie.id }) {
+                    self.viewModel?.movies.value[index].isFavorite = updatedMovie.isFavorite
+                    self.collectionView.reloadData()
                 }
-            }
-            .store(in: &cancellables)
+            }).disposed(by: disposeBag)
     }
 }
 
@@ -131,7 +132,7 @@ extension MoviesListViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if let viewModel = viewModel {
-            if viewModel.movies.count > 19 && viewModel.movies.count - 1 == indexPath.row {
+            if viewModel.movies.value.count > 19 && viewModel.movies.value.count - 1 == indexPath.row {
                 viewModel.loadMoreMovies()
             }
         }
@@ -141,7 +142,7 @@ extension MoviesListViewController: UICollectionViewDelegate {
 extension MoviesListViewController: MovieCVCellDelegate {
     func didTapFavoriteButton(in cell: MovieCVCell) {
         guard let indexPath = collectionView.indexPath(for: cell) else { return }
-        if let movie = viewModel?.movies[indexPath.row] {
+        if let movie = viewModel?.movies.value[indexPath.row] {
             viewModel?.toggleFavorite(movie: movie)
             cell.updateFavoriteButtonAppearance(isFavorite: movie.isFavorite)
         }

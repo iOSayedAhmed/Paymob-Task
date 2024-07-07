@@ -5,11 +5,11 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import Combine
-import Foundation
+import RxSwift
+import RxCocoa
 
 protocol SplachViewModelType {
-    var animationCompleted: CurrentValueSubject<Bool, Never> { get }
+    var animationCompleted: BehaviorSubject<Bool> { get }
     func animationDidFinish()
     func goToMainTabBar()
     func didDisAppear()
@@ -22,10 +22,10 @@ final class SplashViewModel: SplachViewModelType {
         self.coordinator = coordinator
     }
     
-    let animationCompleted: CurrentValueSubject<Bool, Never> = .init(false)
+    let animationCompleted: BehaviorSubject<Bool> = .init(value: false)
 
     func animationDidFinish() {
-        animationCompleted.send(true)
+        animationCompleted.onNext(true)
     }
     
     func goToMainTabBar() {

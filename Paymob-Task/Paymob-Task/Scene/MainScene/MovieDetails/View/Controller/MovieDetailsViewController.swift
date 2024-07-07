@@ -5,8 +5,9 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import Combine
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MovieDetailsViewController: UIViewController {
     @IBOutlet private var movieImageView: UIImageView!
@@ -18,7 +19,7 @@ class MovieDetailsViewController: UIViewController {
     @IBOutlet private var activityIndicator: UIActivityIndicatorView!
     @IBOutlet private var favoriteButton: UIButton!
     var viewModel: MovieDetailsViewModel?
-    private var cancellables: Set<AnyCancellable> = []
+    private let disposeBag = DisposeBag()
 
     init(viewModel: MovieDetailsViewModel, nibName: String) {
         self.viewModel = viewModel
@@ -48,8 +49,8 @@ class MovieDetailsViewController: UIViewController {
         
         activityIndicator.startAnimating()
         ImageLoader.loadImage(from: viewModel.imageURL) { [weak self] image in
-            guard let self else { return }
-            activityIndicator.stopAnimating()
+            guard let self = self else { return }
+            self.activityIndicator.stopAnimating()
             
             if let image = image {
                 DispatchQueue.main.async {
@@ -70,11 +71,11 @@ class MovieDetailsViewController: UIViewController {
     }
     
     private func bindViewModel() {
-        viewModel?.$isFavorite
-            .receive(on: DispatchQueue.main)
-            .sink { [weak self] isFavorite in
+        viewModel?.isFavorite
+            .asDriver()
+            .drive(onNext: { [weak self] isFavorite in
                 self?.updateFavoriteButtonAppearance(isFavorite: isFavorite)
-            }
-            .store(in: &cancellables)
+            })
+            .disposed(by: disposeBag)
     }
 }
