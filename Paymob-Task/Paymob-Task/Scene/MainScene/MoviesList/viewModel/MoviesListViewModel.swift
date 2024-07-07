@@ -52,7 +52,7 @@ class MoviesListViewModel {
                 let favoriteMovieIDs = Set(fetchedFavorites.compactMap { Int($0.id) })
                    
                 let newMovies = response.results.map { movie in
-                    var updatedMovie = movie
+                    let updatedMovie = movie
                     if favoriteMovieIDs.contains(movie.id ?? 0) {
                         updatedMovie.isFavorite = true
                     }

@@ -301,10 +301,10 @@
 		C828CF0E2C3959A8001075BB /* MainScene */ = {
 			isa = PBXGroup;
 			children = (
-				C828CF652C39EE28001075BB /* FavoritesMovies */,
 				C828CF4C2C39941D001075BB /* TabBar */,
 				C828CF122C395A55001075BB /* MoviesList */,
 				C828CF522C3997A0001075BB /* MovieDetails */,
+				C828CF652C39EE28001075BB /* FavoritesMovies */,
 			);
 			path = MainScene;
 			sourceTree = "<group>";
