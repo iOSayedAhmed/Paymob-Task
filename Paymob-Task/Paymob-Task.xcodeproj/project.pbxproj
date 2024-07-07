@@ -50,6 +50,8 @@
 		C828CF752C3A62B1001075BB /* ViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF742C3A62B1001075BB /* ViewController+Extension.swift */; };
 		C828CF892C3A75C2001075BB /* MovieCVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF872C3A75C2001075BB /* MovieCVCell.swift */; };
 		C828CF8A2C3A75C2001075BB /* MovieCVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C828CF882C3A75C2001075BB /* MovieCVCell.xib */; };
+		C828CF932C3A7F85001075BB /* SplashViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF922C3A7F85001075BB /* SplashViewModelTests.swift */; };
+		C828CF952C3A7FAC001075BB /* MockSplashCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = C828CF942C3A7FAC001075BB /* MockSplashCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,6 +119,8 @@
 		C828CF742C3A62B1001075BB /* ViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController+Extension.swift"; sourceTree = "<group>"; };
 		C828CF872C3A75C2001075BB /* MovieCVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCVCell.swift; sourceTree = "<group>"; };
 		C828CF882C3A75C2001075BB /* MovieCVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieCVCell.xib; sourceTree = "<group>"; };
+		C828CF922C3A7F85001075BB /* SplashViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashViewModelTests.swift; sourceTree = "<group>"; };
+		C828CF942C3A7FAC001075BB /* MockSplashCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockSplashCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +184,8 @@
 		C828CED12C394641001075BB /* Paymob-TaskTests */ = {
 			isa = PBXGroup;
 			children = (
+				C828CF8E2C3A7EBF001075BB /* Mock */,
+				C828CF8B2C3A7D6E001075BB /* ViewModelTests */,
 				C828CED22C394641001075BB /* Paymob_TaskTests.swift */,
 			);
 			path = "Paymob-TaskTests";
@@ -239,8 +245,8 @@
 		C828CEF02C3948C2001075BB /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
-				C828CEF32C39490D001075BB /* SplashCoordinator.swift */,
 				C828CEF12C3948D1001075BB /* AppCoordinator.swift */,
+				C828CEF32C39490D001075BB /* SplashCoordinator.swift */,
 				C828CEF52C394953001075BB /* MainTabBarCoordinator.swift */,
 				C828CF282C3962B1001075BB /* MoviesListCoordinator.swift */,
 				C828CF502C399767001075BB /* MovieDetailsCoordinator.swift */,
@@ -501,6 +507,22 @@
 			path = Cells;
 			sourceTree = "<group>";
 		};
+		C828CF8B2C3A7D6E001075BB /* ViewModelTests */ = {
+			isa = PBXGroup;
+			children = (
+				C828CF922C3A7F85001075BB /* SplashViewModelTests.swift */,
+			);
+			path = ViewModelTests;
+			sourceTree = "<group>";
+		};
+		C828CF8E2C3A7EBF001075BB /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				C828CF942C3A7FAC001075BB /* MockSplashCoordinator.swift */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -681,6 +703,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C828CF952C3A7FAC001075BB /* MockSplashCoordinator.swift in Sources */,
+				C828CF932C3A7F85001075BB /* SplashViewModelTests.swift in Sources */,
 				C828CED32C394641001075BB /* Paymob_TaskTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
