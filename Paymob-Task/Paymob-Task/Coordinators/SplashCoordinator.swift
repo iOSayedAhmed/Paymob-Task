@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class SplashCoordinator: Coordinator {
+class SplashCoordinator: Coordinator {
     private(set) var childCoordinators: [Coordinator] = []
     private let navigationController: UINavigationController
     var parentCoordinator: AppCoordinator?
