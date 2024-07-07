@@ -2,19 +2,13 @@
 //  MovieCVCell.swift
 //  Paymob-Task
 //
-//  Created by iOSAYed on 07/07/2024.
+//  Created by iOSAYed on 06/07/2024.
 //
 
 import UIKit
-
 import Combine
-import UIKit
 
-protocol MovieCVCellDelegate: AnyObject {
-    func didTapFavoriteButton(in cell: MovieCVCell)
-}
-
-struct MovieCVCellViewModel {
+struct FavoriteCVCellViewModel {
     private let config = ConfigurationManager.shared
   
     let movie: Movie
@@ -36,7 +30,7 @@ struct MovieCVCellViewModel {
     
     var imageURL: String {
         if let imageURL = try? config.xconfigValue(key: .imageURL) {
-            return "\(imageURL)\(movie.posterPath)"
+            return  "\(imageURL)\(movie.posterPath)"
         }
         return ""
     }
@@ -47,46 +41,36 @@ struct MovieCVCellViewModel {
     }
 }
 
-class MovieCVCell: UICollectionViewCell {
-    @IBOutlet private var movieImageView: UIImageView!
-    @IBOutlet private var titleLabel: UILabel!
-    @IBOutlet private var dateLabel: UILabel!
-    @IBOutlet private var voteCountLabel: UILabel!
-    @IBOutlet private var favoriteButton: UIButton!
-    @IBOutlet private var ratingLabel: UILabel!
+class FavoriteCVCell: UICollectionViewCell {
+    @IBOutlet private weak var movieImageView: UIImageView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var dateLabel: UILabel!
+    @IBOutlet private weak var voteCountLabel: UILabel!
+    @IBOutlet private weak var ratingLabel: UILabel!
     
-    weak var delegate: MovieCVCellDelegate?
     
-    var viewModel: MovieCVCellViewModel? {
+    var viewModel: FavoriteCVCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }
             configure(viewModel: viewModel)
         }
     }
-
-    var favoriteButtonTapped = PassthroughSubject<Movie, Never>()
     
     override func awakeFromNib() {
         super.awakeFromNib()
     }
 
-    public func configure(viewModel: MovieCVCellViewModel) {
+    public func configure(viewModel: FavoriteCVCellViewModel) {
         loadImage(imageURL: viewModel.imageURL)
         titleLabel.text = viewModel.title
         dateLabel.text = viewModel.date
         voteCountLabel.text = viewModel.voteCount
         ratingLabel.text = viewModel.rating
-        favoriteButton.isSelected = viewModel.movie.isFavorite
-        updateFavoriteButtonAppearance(isFavorite: viewModel.movie.isFavorite)
     }
     
-    @IBAction func didTapFavoriteButton(_ sender: UIButton) {
-        favoriteButton.isSelected.toggle()
-        delegate?.didTapFavoriteButton(in: self)
-    }
     
     @MainActor func loadImage(imageURL: String) {
-        ImageLoader.loadImage(from: imageURL) { [weak self] image in
+        ImageLoader.loadImage(from: imageURL) {[weak self] image in
             DispatchQueue.main.async {
                 if let image = image {
                     self?.movieImageView.image = image
@@ -96,12 +80,5 @@ class MovieCVCell: UICollectionViewCell {
             }
         }
     }
-    
-    func updateFavoriteButtonAppearance(isFavorite: Bool) {
-        if isFavorite {
-            favoriteButton.setImage(UIImage(systemName: "heart.fill"), for: .selected)
-        } else {
-            favoriteButton.setImage(UIImage(systemName: "heart"), for: .normal)
-        }
-    }
 }
+

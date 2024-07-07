@@ -5,18 +5,18 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 class MovieDetailsViewController: UIViewController {
-    @IBOutlet weak var movieImageView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var genreIdsLabel: UILabel!
-    @IBOutlet weak var releaseNoteLabel: UILabel!
-    @IBOutlet weak var ratingLabel: UILabel!
-    @IBOutlet weak var overviewTextView: UITextView!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet private var movieImageView: UIImageView!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var genreIdsLabel: UILabel!
+    @IBOutlet private var releaseNoteLabel: UILabel!
+    @IBOutlet private var ratingLabel: UILabel!
+    @IBOutlet private var overviewTextView: UITextView!
+    @IBOutlet private var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet private var favoriteButton: UIButton!
     var viewModel: MovieDetailsViewModel?
     private var cancellables: Set<AnyCancellable> = []
 
@@ -59,7 +59,6 @@ class MovieDetailsViewController: UIViewController {
                 self.movieImageView.image = UIImage(named: "image_placeholder")
             }
         }
-        
     }
     
     @IBAction func didTapFavoriteButton(_ sender: UIButton) {
@@ -71,11 +70,11 @@ class MovieDetailsViewController: UIViewController {
     }
     
     private func bindViewModel() {
-         viewModel?.$isFavorite
-             .receive(on: DispatchQueue.main)
-             .sink { [weak self] isFavorite in
-                 self?.updateFavoriteButtonAppearance(isFavorite: isFavorite)
-             }
-             .store(in: &cancellables)
-     }
+        viewModel?.$isFavorite
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] isFavorite in
+                self?.updateFavoriteButtonAppearance(isFavorite: isFavorite)
+            }
+            .store(in: &cancellables)
+    }
 }

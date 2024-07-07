@@ -5,9 +5,8 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import Foundation
 import Combine
-
+import Foundation
 
 protocol SplachViewModelType {
     var animationCompleted: CurrentValueSubject<Bool, Never> { get }
@@ -16,27 +15,24 @@ protocol SplachViewModelType {
     func didDisAppear()
 }
 
-final class SplashViewModel :SplachViewModelType {
-   
+final class SplashViewModel: SplachViewModelType {
+    weak var coordinator: SplashCoordinator?
     
-   
-    weak var coordinator:SplashCoordinator?
-    
-     init(coordinator: SplashCoordinator? = nil) {
+    init(coordinator: SplashCoordinator? = nil) {
         self.coordinator = coordinator
     }
     
-    let animationCompleted: CurrentValueSubject<Bool, Never> = CurrentValueSubject<Bool, Never>(false)
+    let animationCompleted: CurrentValueSubject<Bool, Never> = .init(false)
 
     func animationDidFinish() {
         animationCompleted.send(true)
     }
     
-    func goToMainTabBar(){
+    func goToMainTabBar() {
         coordinator?.startMainTabBarCoordinator()
     }
     
-    func didDisAppear(){
+    func didDisAppear() {
         coordinator?.didDisAppear()
     }
 }

@@ -5,8 +5,8 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import Foundation
 import Combine
+import Foundation
 
 class MovieDetailsViewModel {
     private let config = ConfigurationManager.shared
@@ -62,4 +62,3 @@ class MovieDetailsViewModel {
         NotificationCenter.default.post(name: .favoriteStatusChanged, object: movie)
     }
 }
-

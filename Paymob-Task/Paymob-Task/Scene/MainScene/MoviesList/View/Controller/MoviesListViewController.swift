@@ -5,23 +5,23 @@
 //  Created by iOSAYed on 06/07/2024.
 //
 
-import UIKit
 import Combine
+import UIKit
 
 class MoviesListViewController: UIViewController {
-    @IBOutlet weak var containerStackView: UIStackView!
-    @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet private var containerStackView: UIStackView!
+    @IBOutlet private var collectionView: UICollectionView!
     
-            var viewModel: MoviesListViewModel?
+    var viewModel: MoviesListViewModel?
     private var cancellables: Set<AnyCancellable> = []
     private var dataSource: UICollectionViewDiffableDataSource<Int, Movie>?
     
-    
-    init(viewModel:MoviesListViewModel,nibName:String) {
+    init(viewModel: MoviesListViewModel, nibName: String) {
         self.viewModel = viewModel
         super.init(nibName: nibName, bundle: nil)
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -57,32 +57,32 @@ class MoviesListViewController: UIViewController {
     
     private func setupViewBinding() {
         guard let viewModel = viewModel else { return }
-            viewModel.$movies
-                .receive(on: DispatchQueue.main)
-                .sink {[weak self] movies in
-                    guard let self else { return }
-                    snapshot(movies: movies)
-                }.store(in: &cancellables)
+        viewModel.$movies
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] movies in
+                guard let self else { return }
+                snapshot(movies: movies)
+            }.store(in: &cancellables)
             
-                viewModel.$movies
-                    .combineLatest(viewModel.$isLoading)
-                    .receive(on: DispatchQueue.main)
-                    .sink {[weak self] movies, isLoading in
-                        guard let self else { return }
-                        collectionView.isHidden = isLoading
-                    }.store(in: &cancellables)
+        viewModel.$movies
+            .combineLatest(viewModel.$isLoading)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _, isLoading in
+                guard let self else { return }
+                collectionView.isHidden = isLoading
+            }.store(in: &cancellables)
     }
     
     private func registerCell() {
         collectionView.delegate = self
-        collectionView.collectionViewLayout = generateCollectionLayout()
+        collectionView.collectionViewLayout = MoviesListViewController.generateCollectionLayout()
         collectionView.register(UINib(nibName: MovieCVCell.className, bundle: nil),
                                 forCellWithReuseIdentifier: MovieCVCell.className)
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<Int, Movie>(collectionView: collectionView) {[unowned self] in
-            return configureCell(collectionView: $0, indexPath: $1, movie: $2)
+        dataSource = UICollectionViewDiffableDataSource<Int, Movie>(collectionView: collectionView) { [unowned self] in
+            configureCell(collectionView: $0, indexPath: $1, movie: $2)
         }
     }
     
@@ -101,40 +101,29 @@ class MoviesListViewController: UIViewController {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MovieCVCell.className, for: indexPath) as! MovieCVCell
        
         let cellViewModel = MovieCVCellViewModel(movie: movie)
-           cell.configure(viewModel: cellViewModel)   
-           cell.delegate = self
-           return cell
-    }
-    
-    private func generateCollectionLayout() -> UICollectionViewCompositionalLayout {
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1.0))
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1.0), heightDimension: .fractionalHeight(1/6))
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitems: [item])
-        
-        let section = NSCollectionLayoutSection(group: group)
-        return UICollectionViewCompositionalLayout(section: section)
+        cell.configure(viewModel: cellViewModel)
+        cell.delegate = self
+        return cell
     }
     
     private func observeFavoriteStatusChanges() {
-          NotificationCenter.default.publisher(for: .favoriteStatusChanged)
-              .sink { [weak self] notification in
-                  guard let self = self,
-                        let updatedMovie = notification.object as? Movie else { return }
-                  if let index = self.viewModel?.movies.firstIndex(where: { $0.id == updatedMovie.id }) {
-                      self.viewModel?.movies[index].isFavorite = updatedMovie.isFavorite
-                      collectionView.reloadData()
-                  }
-              }
-              .store(in: &cancellables)
-      }
+        NotificationCenter.default.publisher(for: .favoriteStatusChanged)
+            .sink { [weak self] notification in
+                guard let self = self,
+                      let updatedMovie = notification.object as? Movie else { return }
+                if let index = self.viewModel?.movies.firstIndex(where: { $0.id == updatedMovie.id }) {
+                    self.viewModel?.movies[index].isFavorite = updatedMovie.isFavorite
+                    collectionView.reloadData()
+                }
+            }
+            .store(in: &cancellables)
+    }
 }
 
 extension MoviesListViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
-        if let viewModel = viewModel , let  movie = viewModel.selectedMovie(at: indexPath.row) {
+        if let viewModel = viewModel, let movie = viewModel.selectedMovie(at: indexPath.row) {
             print(movie.isFavorite)
             viewModel.coordinator.goToMovieDetails(movie: movie)
         }
@@ -146,10 +135,8 @@ extension MoviesListViewController: UICollectionViewDelegate {
                 viewModel.loadMoreMovies()
             }
         }
-        
     }
 }
-
 
 extension MoviesListViewController: MovieCVCellDelegate {
     func didTapFavoriteButton(in cell: MovieCVCell) {
@@ -159,6 +146,4 @@ extension MoviesListViewController: MovieCVCellDelegate {
             cell.updateFavoriteButtonAppearance(isFavorite: movie.isFavorite)
         }
     }
-  }
-
-
+}
